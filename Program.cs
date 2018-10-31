@@ -40,6 +40,7 @@ namespace Guesser_Game
                 Console.WriteLine($"{rhapsody.Name} with 1 guess\n{brutus.Name} with 1 guess\n{rando.Name} with 1 guess");
                 Console.WriteLine("");
                 Console.WriteLine("Our average scenarios for guessing are:");
+                //This calls a method which runs each player object 100 times and averages the number of guesses    
                 Game.AverageGuess(genNum);
                 Console.WriteLine("");
                 Console.WriteLine("Our worst case scenarios are: ");
@@ -49,8 +50,6 @@ namespace Guesser_Game
             
 
             } while (Continue());
-
-
         }
         public static bool Continue()
         {
@@ -72,6 +71,7 @@ namespace Guesser_Game
                 Console.WriteLine("Sorry, I didn't understand that. Try again.");
                 run = Continue();
             }
+            Console.Clear();
             return run;
         }
     }

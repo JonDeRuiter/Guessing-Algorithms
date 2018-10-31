@@ -30,7 +30,7 @@ namespace Guesser_Game
             Random r = new Random();
             do
             {
-                guess = r.Next(1, 100);
+                guess = r.Next(1, 101);
                 counter++;
                 
                 if (guess == hidden)

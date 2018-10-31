@@ -56,6 +56,7 @@ namespace Guesser_Game
         }
         public static int Average(List<int> guesses)
         {
+            //Finds the average of a list of numbers tat is 100 long
             int counting = 0;
             foreach (int i in guesses)
             {
@@ -73,14 +74,19 @@ namespace Guesser_Game
             Rando rando = new Rando();
             
 
-
+            //Runns each object, including the random object, 100 times and adds the result into a seperate list.
             for (int i = 0; i < 100; i++)
             {
                 int hidden = genNum.Next(1, 101);
                 rhAvg.Add(rhapsody.RhapsodyGuesser(hidden, 1, 100));
                 bAvg.Add(brutus.BrutusGuesser(hidden));
-                rAvg.Add(rando.RandoGuesser(hidden));
+                //rAvg.Add(rando.RandoGuesser(hidden));
+                int rand = rando.RandoGuesser(hidden);
+                Console.WriteLine($"Rando guessed {rand} times");
+                rAvg.Add(rand);
             }
+
+            //Sends each list through an averager method and returns the final average
             int finalR = Average(rAvg);
             //Console.WriteLine($"Rando avg {finalR}");
             int finalRh = Average(rhAvg);
