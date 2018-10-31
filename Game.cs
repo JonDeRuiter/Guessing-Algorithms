@@ -10,12 +10,11 @@ namespace Guesser_Game
     {
 
 
-        public static int RandomNum()
+        public static Random RandomNum()
         {
-            int findMe;
+            
             Random genNum = new Random();
-            findMe = genNum.Next(1, 101);
-            return findMe;
+            return genNum;
         }
         public static bool Feedback(int x, int findMe)
         {
@@ -55,7 +54,16 @@ namespace Guesser_Game
                 return false;
             }
         }
-        public static void Average(int hidden)
+        public static int Average(List<int> guesses)
+        {
+            int counting = 0;
+            foreach (int i in guesses)
+            {
+                counting += i;
+            }
+            return (counting/100);
+        }
+        public static void AverageGuess(Random genNum)
         {
             List<int> rAvg = new List<int>();
             List<int> bAvg = new List<int>();
@@ -63,38 +71,21 @@ namespace Guesser_Game
             HighLow rhapsody = new HighLow();
             Brutus brutus = new Brutus();
             Rando rando = new Rando();
-            Random hidden3 = new Random();
+            
 
 
             for (int i = 0; i < 100; i++)
             {
-                int hidden2 = hidden3.Next(1, 101);
-                rhAvg.Add(rhapsody.RhapsodyGuesser(hidden2, 1, 100));
-                bAvg.Add(brutus.BrutusGuesser(hidden2));
+                int hidden = genNum.Next(1, 101);
+                rhAvg.Add(rhapsody.RhapsodyGuesser(hidden, 1, 100));
+                bAvg.Add(brutus.BrutusGuesser(hidden));
                 rAvg.Add(rando.RandoGuesser(hidden));
             }
-            int bigR = 0;
-            foreach (int i in rAvg)
-            {
-                bigR += rAvg[i];
-                Console.WriteLine($"Rando took {rAvg[i]} guesses");
-            }
-            int bigRh = 0;
-            foreach (int i in rhAvg)
-            {
-                bigRh += rhAvg[i];
-                Console.WriteLine($"Rhapsody took {rhAvg[i]} guesses");
-            }
-            int bigB = 0;
-            foreach (int i in bAvg)
-            {
-                bigB += bAvg[i];
-                Console.WriteLine($"Brutus took {bAvg[i]} guesses");
-            }
-            int finalR = bigR/100;
-            int finalRh =  bigRh/100;
-            int finalB = bigB/100;
-
+            int finalR = Average(rAvg);
+            //Console.WriteLine($"Rando avg {finalR}");
+            int finalRh = Average(rhAvg);
+            int finalB = Average(bAvg);
+                        
             Console.WriteLine($"{rhapsody.Name}'s average was {finalRh}\n{brutus.Name}'s average was {finalB}\n{rando.Name}'s average was {finalR}");
         }
     }

@@ -14,7 +14,8 @@ namespace Guesser_Game
             do
             {
                 Console.WriteLine("Welcome to the Guesser Game!\nLet's see who the better guesser is!");
-                int hidden = Game.RandomNum();
+                Random genNum = new Random();
+                int hidden = genNum.Next(1, 101);
                 Console.WriteLine("");
                 Console.WriteLine("Rhapsody from Bohemia, is our first contestant");
                 HighLow rhapsody = new HighLow();
@@ -39,7 +40,7 @@ namespace Guesser_Game
                 Console.WriteLine($"{rhapsody.Name} with 1 guess\n{brutus.Name} with 1 guess\n{rando.Name} with 1 guess");
                 Console.WriteLine("");
                 Console.WriteLine("Our average scenarios for guessing are:");
-                Game.Average(hidden);
+                Game.AverageGuess(genNum);
                 Console.WriteLine("");
                 Console.WriteLine("Our worst case scenarios are: ");
                 Console.WriteLine($"{rhapsody.Name} with 7 guesses\n{brutus.Name} with 100 guess\n{rando.Name} with infinite guesses");
